@@ -26,13 +26,13 @@ var routes = Routes{
 		"AddWord",
 		"POST",
 		"/add",
-		AddWord,
+		AddWordPost,
 	},
 	Route{
-		"AddWordGet",
+		"AddWord",
 		"GET",
 		"/add/{olocale}/{oword}/{tlocale}/{tword}",
-		AddWord,
+		AddWordGet,
 	},
 	Route{
 		"TranslateWord",

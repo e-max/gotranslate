@@ -6,15 +6,19 @@ import (
 	"github.com/styutnev/gotranslate/dictionary"
 )
 
-var l dictionary.Library
+var l = dictionary.NewLibrary()
 
 func GetIndex(w http.ResponseWriter, r *http.Request) {
-	l.Add(dictionary.Word{Title:"Cat", Locale:"En"}, dictionary.Word{Title:"Kot", Locale:"Ru"})
 	fmt.Fprint(w, "index\n")
 }
 
-func AddWord(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "add\n")
+func AddWordPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "POST add\n")
+}
+
+func AddWordGet(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "GET add\n")
+
 }
 
 func TranslateWord(w http.ResponseWriter, r *http.Request) {
