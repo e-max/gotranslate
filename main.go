@@ -1,13 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"github.com/styutnev/gotranslate/dictionary"
+	"github.com/styutnev/gotranslate/api"
+	"log"
+	"net/http"
 )
 
 func main() {
-	d := &Dictionary{Translations: map[Word][]Word{}}
-	fmt.Println("Hello World")
+	router := api.CreateRouter()
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 
