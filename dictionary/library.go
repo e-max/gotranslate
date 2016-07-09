@@ -14,8 +14,8 @@ func NewLibrary() *Library {
 }
 
 // Check if dictionary for locale exists
-func (d *Library) Exists(locale string) bool {
-	_, ok := d.Dictionaries[locale]
+func (d *Library) Exists(w Word) bool {
+	_, ok := d.Dictionaries[w.Locale]
 
 	return ok
 }
@@ -28,7 +28,7 @@ func (d *Library) Append(locale string, dict *Dictionary) {
 // Add original and translation to dictionary
 // Values will be added to two dictionaries to keep backward compatibility
 func (d *Library) Add(o Word, t Word) {
-	if false == d.Exists(o.Locale) {
+	if false == d.Exists(o) {
 		dict := &Dictionary{Translations: map[Word][]Word{}}
 		d.Append(o.Locale, dict)
 	}

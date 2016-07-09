@@ -3,9 +3,30 @@ package dictionary
 import "testing"
 
 func TestDictionary(t *testing.T) {
-	d := Dictionary{}
+	d := NewDictionary()
+
 	if len(d.Translations) > 0 {
 		t.Error("Empty dict is not empty")
+	}
+}
+
+func TestDictionaryExists(t *testing.T) {
+	d := NewDictionary()
+	o1 := Word{Title:"Cat", Locale:"En"}
+	tr := Word{Title:"Katzen", Locale:"De"}
+
+	e := d.Exists(o1)
+
+	if e != false {
+		t.Error("Check if word exists failed")
+	}
+
+	d.Add(o1, tr)
+
+	e = d.Exists(o1)
+
+	if e != true {
+		t.Error("Check if word exists failed")
 	}
 }
 

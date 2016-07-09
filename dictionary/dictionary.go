@@ -4,6 +4,7 @@ package dictionary
 // Interface for collectable structures
 type Collector interface {
 	Add(Word, Word)
+	Exists(Word) bool
 	Find(Word) ([]Word, error)
 	Translate(string, string) []string
 }
@@ -20,6 +21,13 @@ func NewDictionary() *Dictionary {
 	d.Translations = make(map[Word][]Word)
 
 	return d
+}
+
+// Check if words is mapped
+func (d *Dictionary) Exists(o Word) bool  {
+	_, ok := d.Translations[o]
+
+	return ok
 }
 
 // Add word translation
