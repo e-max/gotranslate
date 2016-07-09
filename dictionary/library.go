@@ -5,6 +5,14 @@ type Library struct {
 	Dictionaries map[string]*Dictionary
 }
 
+// Create new Library
+func NewLibrary() *Library {
+	l := new(Library)
+	l.Dictionaries = make(map[string]*Dictionary)
+
+	return l
+}
+
 // Check if dictionary for locale exists
 func (d *Library) Exists(locale string) bool {
 	_, ok := d.Dictionaries[locale]

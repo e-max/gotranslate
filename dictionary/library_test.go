@@ -3,7 +3,8 @@ package dictionary
 import "testing"
 
 func TestLibraryAdd(t *testing.T) {
-	d := &Library{Dictionaries: map[string]*Dictionary{}}
+	d := NewLibrary()
+
 	w := Word{Title:"Cat", Locale:"En"}
 	t1 := Word{Title:"Katzen", Locale:"De"}
 	t2 := Word{Title:"Neko", Locale:"Jp"}
@@ -17,7 +18,7 @@ func TestLibraryAdd(t *testing.T) {
 }
 
 func TestLibraryAddRecursive(t *testing.T) {
-	d := &Library{Dictionaries: map[string]*Dictionary{}}
+	d := NewLibrary()
 
 	w1 := Word{Title:"Cat", Locale:"En"}
 	t1 := Word{Title:"Katzen", Locale:"De"}
@@ -33,8 +34,7 @@ func TestLibraryAddRecursive(t *testing.T) {
 }
 
 func TestLibraryFind(t *testing.T) {
-	d := &Library{Dictionaries: map[string]*Dictionary{}}
-
+	d := NewLibrary()
 	w := Word{Title:"Cat", Locale:"En"}
 	t1 := Word{Title:"Katzen", Locale:"De"}
 	t2 := Word{Title:"Neko", Locale:"Jp"}
@@ -64,7 +64,7 @@ func TestLibraryFind(t *testing.T) {
 }
 
 func TestLibraryTranslate(t *testing.T) {
-	d := &Library{Dictionaries: map[string]*Dictionary{}}
+	d := NewLibrary()
 	w1 := Word{Title:"Cat", Locale:"En"}
 	w2 := Word{Title:"Kot", Locale:"Ru"}
 	t1 := Word{Title:"Katzen", Locale:"De"}

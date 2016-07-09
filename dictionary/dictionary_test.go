@@ -10,7 +10,7 @@ func TestDictionary(t *testing.T) {
 }
 
 func TestDictionaryAdd(t *testing.T) {
-	d := &Dictionary{Translations: map[Word][]Word{}}
+	d := NewDictionary()
 	o1 := Word{Title:"Cat", Locale:"En"}
 	o2 := Word{Title:"Cat", Locale:"En"}
 	tr := Word{Title:"Katzen", Locale:"De"}
@@ -30,7 +30,7 @@ func TestDictionaryAdd(t *testing.T) {
 }
 
 func TestDictionaryFind(t *testing.T) {
-	d := &Dictionary{Translations: map[Word][]Word{}}
+	d := NewDictionary()
 	w1 := Word{Title:"Cat", Locale:"En"}
 	w2 := Word{Title:"Кот", Locale:"Ru"}
 	t1 := Word{Title:"Katzen", Locale:"De"}
@@ -53,7 +53,7 @@ func TestDictionaryFind(t *testing.T) {
 }
 
 func TestDictionaryTranslate(t *testing.T) {
-	d := &Dictionary{Translations: map[Word][]Word{}}
+	d := NewDictionary()
 	w1 := Word{Title:"Cat", Locale:"En"}
 	w2 := Word{Title:"Кот", Locale:"Ru"}
 	t1 := Word{Title:"Katzen", Locale:"De"}

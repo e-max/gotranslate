@@ -14,6 +14,14 @@ type Dictionary struct {
 	Translations map[Word][]Word
 }
 
+// Create new Dictionary
+func NewDictionary() *Dictionary {
+	d := new(Dictionary)
+	d.Translations = make(map[Word][]Word)
+
+	return d
+}
+
 // Add word translation
 // If translation exists - return error
 func (d *Dictionary) Add(o Word, t Word) {
