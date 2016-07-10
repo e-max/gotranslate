@@ -3,43 +3,29 @@ package api
 import (
 	"github.com/gorilla/mux"
 	"net/http"
+	"time"
+	"log"
 )
 
-// Route structure
-type Route struct {
+var routes = []struct {
 	Name        string
 	Method      string
 	Pattern     string
 	HandlerFunc http.HandlerFunc
+}{
+	{"Index", "GET", "/", GetIndex},
+	{"AddWord", "POST", "/add", AddWordPost},
+	{"TranslateWord", "GET", "/translate/{olocale:[a-z]{2}}/{title:[A-Za-z]+}/{tlocale:[a-z]{2}}", TranslateWord},
 }
 
-type Routes []Route
-
-var routes = Routes{
-	Route{
-		"Index",
-		"GET",
-		"/",
-		GetIndex,
-	},
-	Route{
-		"AddWord",
-		"POST",
-		"/add",
-		AddWordPost,
-	},
-	Route{
-		"AddWord",
-		"GET",
-		"/add/{olocale}/{oword}/{tlocale}/{tword}",
-		AddWordGet,
-	},
-	Route{
-		"TranslateWord",
-		"GET",
-		"/translate/{locale}/{word}",
-		TranslateWord,
-	},
+// Decorate http handlers with logging
+func Logger(handler http.Handler, name string) http.Handler {
+	return http.HandlerFunc(
+		func(w http.ResponseWriter, r *http.Request) {
+			start := time.Now()
+			handler.ServeHTTP(w, r)
+			log.Printf("%s\t%s\t%s\t%s", r.Method, r.RequestURI, name, time.Since(start))
+	})
 }
 
 // Create router for Api

@@ -9,6 +9,11 @@ type Collector interface {
 	Translate(string, string) []string
 }
 
+type Word struct {
+	Title  string `json:"title,omitempty"`
+	Locale string `json:"locale,omitempty"`
+}
+
 // Dictionary is mapping for words
 // One word can be mapped to different words (translations, meanings, etc.)
 type Dictionary struct {
